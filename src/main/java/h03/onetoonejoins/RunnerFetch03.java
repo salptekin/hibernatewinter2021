@@ -109,11 +109,13 @@ public class RunnerFetch03 {
         
         //7)Fetch all students information of common records from Students03 and Diary table
         //1.Way: SQL Query
-//        String sql7 = "SELECT * FROM Students03 s INNER JOIN Dairy d ON s.student_id = d.student_id";
-//        List<Object[]> resultList7a = session.createSQLQuery(sql7).getResultList();
-//        for(Object[] w: resultList7a) {
-//            System.out.println(Arrays.toString(w));
-//        }
+		//Note: If you have duplicated columns in different table, to fetch all records do not use "*".
+		//      Type column names one by one with the aliases
+        String sql7 = "SELECT s.student_id, s.grade, s.student_name, d.id, d.dairy FROM Students03 s INNER JOIN Dairy d ON s.student_id = d.student_id";
+        List<Object[]> resultList7a = session.createSQLQuery(sql7).getResultList();
+        for(Object[] w: resultList7a) {
+            System.out.println(Arrays.toString(w));
+        }
         
         //2.Way: HQL Query
 		//In HQL, if you want to get all data about records, no need to use "SELECT *", you can start from "FROM ..."
@@ -125,41 +127,15 @@ public class RunnerFetch03 {
         
         
        //8)Fetch all students information of all records from Students03 and Diary table
-       String hql8 = "FROM Students03 s FULL JOIN FETCH Dairy d ON s.student_id = d.student"; 
-       List<Object[]> resultList8 = session.createQuery(hql8).getResultList();
-       for(Object[] w: resultList8) {
-           System.out.println(Arrays.toString(w));
-       } 
-        
-        
-        
-        
-        
-        
-        
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+//       String hql8 = "FROM Students03 s FULL JOIN FETCH Dairy d ON s.student_id = d.student"; 
+//       List<Object[]> resultList8 = session.createQuery(hql8).getResultList();
+//       for(Object[] w: resultList8) {
+//           System.out.println(Arrays.toString(w));
+//       } 
 		
 		tx.commit();
 		sf.close();
 		session.close();
-		
-		
 
 	}
 
