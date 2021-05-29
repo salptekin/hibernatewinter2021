@@ -85,14 +85,26 @@ public class RunnerFetch04 {
 		
 		
 		//6: Delete all records from parent table
+		/*
+		 	Note: If a table has child table, you cannot delete records from parent table.
+		 	If you insist to delete records from parent table you have 2 options;
+		 	a)Delete child records first then delete parent records.
+		 	b)By using annotation we can tell to Hibernate like;
+		 	  If I delete parent delete child
+		 */
 		//1:SQL Query
-		String sqlQuery4 = "DELETE FROM students_table";
-		int numOfDeletedRecs2 = session.createSQLQuery(sqlQuery4).executeUpdate();
-		System.out.println(numOfDeletedRecs2 + " records are deleted");
+		//a)Delete child records first then delete parent records.
+//		String sqlQuery3 = "DELETE FROM books_table";
+//		int numOfDeletedRecs1 = session.createSQLQuery(sqlQuery3).executeUpdate();
+//		System.out.println(numOfDeletedRecs1 + " records are deleted");
+//		
+//		String sqlQuery4 = "DELETE FROM students_table";
+//		int numOfDeletedRecs2 = session.createSQLQuery(sqlQuery4).executeUpdate();
+//		System.out.println(numOfDeletedRecs2 + " records are deleted");
 		
-		
-		
-		
+		//b)By using annotation we can tell to Hibernate like;
+		student = session.get(Students04.class, 101);
+		session.delete(student);
 		
 		
 		
