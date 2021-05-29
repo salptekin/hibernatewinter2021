@@ -3,16 +3,21 @@ package h04.onetomanyjoins;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="students_table")
 public class Students04 {
 	
 	@Id
 	private int std_id;
+	@Column(name="std_name")
 	private String name;
+	@Column(name="std_grade")
 	private int grade;
 	/*
 	 	Note:In parent class
